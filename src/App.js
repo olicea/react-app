@@ -1,10 +1,10 @@
+import Header from "./components/Header";
 
 function App() {
   const name = 'React';
   return (
     <div className="container">
-      <h1>Hello world!</h1>
-      <h2>hello {name}</h2>
+      <Header />
     </div>
   );
 }
