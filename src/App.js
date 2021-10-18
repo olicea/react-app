@@ -27,11 +27,14 @@ function App() {
         }
     ]
   )
+
+  const [showAddTask, setShowAddTask] = useState(false)
+
   // Add a new task
   const addTask = (task) => {
-    const id = Math.floor(Math.random() * 1000) + 1;
+    const id = Math.floor(Math.random() * 10000) + 1
     const newTask = { id, ...task }
-    setTasks([...tasks, {newTask}])
+    setTasks([...tasks, newTask])
   }
 
   // Delete task
@@ -47,10 +50,15 @@ function App() {
   }
   return (
     <div className="container">
-      <Header title= 'Hello'/>
-      <AddTask onAdd={addTask} />
+      <Header 
+        onAdd={() => setShowAddTask(!showAddTask)} showAdd={showAddTask}
+      />
+      {showAddTask && <AddTask onAdd={addTask} />}
       {tasks.length > 0 ?
-        (<Tasks tasks={tasks} onDelete={deleteTask} onToggle={toggleReminder} />) : 
+        (<Tasks 
+          tasks={tasks} 
+          onDelete={deleteTask} 
+          onToggle={toggleReminder} />) : 
         ('No Tasks')}
     </div>
   );
